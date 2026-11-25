@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HabitLoop | Acompanhe seus hábitos</title>
+  <meta name="description" content="Acompanhe hábitos diários com check-in visual, sequência de dias e alertas de metas atingidas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topo">
+      <div>
+        <p class="data" id="hoje"></p>
+        <h1>Habit<span>Loop</span></h1>
+        <p class="frase" id="frase"></p>
+      </div>
+      <div class="dia-anel" aria-live="polite">
+        <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trilho" cx="40" cy="40" r="34"/><circle class="anel" id="anel" cx="40" cy="40" r="34"/></svg>
+        <div><strong id="feitos">0/0</strong><span>hoje</span></div>
+      </div>
+    </header>
+
+    <div class="semana-cab" aria-hidden="true">
+      <span></span>
+      <div class="dias-cab" id="dias-cab"></div>
+      <span></span>
+    </div>
+
+    <ul class="habitos" id="habitos"></ul>
+
+    <button class="novo" id="novo">
+      <span aria-hidden="true">+</span> Novo hábito
+    </button>
+
+    <section class="resumo">
+      <h2>Últimas 12 semanas</h2>
+      <div class="mapa-area"><div class="mapa" id="mapa" role="img"></div><p class="mapa-txt" id="mapa-txt"></p></div>
+      <div class="mapa-leg"><span>menos</span><i class="n0"></i><i class="n1"></i><i class="n2"></i><i class="n3"></i><i class="n4"></i><span>mais</span></div>
+    </section>
+  </main>
+
+  <dialog id="dlg" aria-labelledby="dlg-titulo">
+    <form method="dialog" id="form">
+      <h2 id="dlg-titulo">Novo hábito</h2>
+      <label>Nome<input id="f-nome" required maxlength="40" placeholder="Ex.: Beber 2 L de água"></label>
+      <fieldset><legend>Ícone</legend><div class="opcoes" id="f-emojis"></div></fieldset>
+      <fieldset><legend>Cor</legend><div class="opcoes" id="f-cores"></div></fieldset>
+      <label>Meta de sequência
+        <select id="f-meta">
+          <option value="7">7 dias seguidos</option>
+          <option value="14">14 dias seguidos</option>
+          <option value="21" selected>21 dias seguidos</option>
+          <option value="30">30 dias seguidos</option>
+          <option value="66">66 dias seguidos</option>
+          <option value="100">100 dias seguidos</option>
+        </select>
+      </label>
+      <div class="acoes">
+        <button type="button" class="link perigo" id="f-excluir" hidden>Excluir hábito</button>
+        <button value="cancelar" formnovalidate class="btn sec">Cancelar</button>
+        <button value="salvar" class="btn">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="alerta" id="alerta" role="status" hidden>
+    <span class="alerta__emoji" id="alerta-emoji">🔥</span>
+    <div><strong id="alerta-titulo"></strong><p id="alerta-texto"></p></div>
+  </div>
+  <canvas id="confete" aria-hidden="true"></canvas>
+  <script src="js/script.js"></script>
+</body>
+</html>
